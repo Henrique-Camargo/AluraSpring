@@ -10,12 +10,17 @@ import med.voll.api.model.enums.Specialty;
 
 public record DataMedics(
 
+
+
         @NotBlank
         String name,
 
         @NotBlank
         @Email
         String email,
+
+        @NotBlank
+        String cellphone,
 
         @NotBlank
         @Pattern(regexp = "\\d{4,6}")

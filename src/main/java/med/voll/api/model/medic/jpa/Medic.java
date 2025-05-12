@@ -9,6 +9,7 @@ import med.voll.api.model.endress.EndressData;
 import med.voll.api.model.endress.EndressDataJpa;
 import med.voll.api.model.enums.Specialty;
 import med.voll.api.model.medic.dto.DataMedics;
+import med.voll.api.model.medic.dto.DataMedicsUpdate;
 
 @Entity(name = "medicos")
 @Table(name = "tb_medics")
@@ -23,6 +24,7 @@ public class Medic {
     private Long id;
     private String name;
     private String email;
+    private String cellphone;
     private String crm;
 
     @Enumerated(EnumType.STRING)
@@ -31,12 +33,33 @@ public class Medic {
     @Embedded
     private EndressDataJpa endressDataJpa;
 
+    private Boolean active;
+
     public Medic(DataMedics dataMedics) {
+        this.active = true;
         this.name = dataMedics.name();
         this.email = dataMedics.email();
+        this.cellphone = dataMedics.cellphone();
         this.crm = dataMedics.crm();
+        this.specialty = dataMedics.specialty();
         this.endressDataJpa = new EndressDataJpa(dataMedics.endressData());
     }
 
+    public void setDataMedicsUpdate(DataMedicsUpdate dataMedicsUpdate) {
+        if (dataMedicsUpdate.name() != null) {
+            this.name = dataMedicsUpdate.name();
+        }
+        if (dataMedicsUpdate.cellphone() != null) {
+            this.cellphone = dataMedicsUpdate.cellphone();
+        }
+        if (dataMedicsUpdate.endressData() != null) {
+            this.endressDataJpa.atualizarInformacoes(dataMedicsUpdate.endressData());
+        }
+
+    }
+
+    public void delet() {
+        this.active = false;
+    }
 
 }

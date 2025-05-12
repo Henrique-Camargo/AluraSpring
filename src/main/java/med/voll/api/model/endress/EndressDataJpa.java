@@ -28,4 +28,28 @@ public class EndressDataJpa {
         this.city = endressData.city();
         this.uf = endressData.uf();
     }
+
+    public void atualizarInformacoes(EndressData dados) {
+        if (dados.street() != null) {
+            this.street = dados.street();
+        }
+        if (dados.district() != null) {
+            this.district = dados.district();
+        }
+        if (dados.cep() != null) {
+            this.cep = dados.cep();
+        }
+        if (dados.uf() != null) {
+            this.uf = dados.uf();
+        }
+        if (dados.city() != null) {
+            this.city = dados.city();
+        }
+        if (dados.number() != null) {
+            this.number = dados.number();
+        }
+        if (dados.complement() != null) {
+            this.complement = dados.complement();
+        }
+    }
 }
